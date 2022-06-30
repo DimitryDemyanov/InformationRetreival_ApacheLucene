@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>es.udc.fic.ri</groupId>
+  <artifactId>mri-searcher</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>mri_searcher</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <lucene.version>9.0.0</lucene.version>
+  </properties>
+
+  <dependencies>
+  	<dependency>
+  		<groupId>org.junit.jupiter</groupId>
+  		<artifactId>junit-jupiter</artifactId>
+  		<version>5.4.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.lucene</groupId>
+  		<artifactId>lucene-analysis-common</artifactId>
+  		<version>9.0.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.lucene</groupId>
+  		<artifactId>lucene-core</artifactId>
+  		<version>9.0.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.lucene</groupId>
+  		<artifactId>lucene-queryparser</artifactId>
+  		<version>9.0.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.lucene</groupId>
+  		<artifactId>lucene-demo</artifactId>
+  		<version>9.0.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.commons</groupId>
+  		<artifactId>commons-math3</artifactId>
+  		<version>3.6</version>
+  	</dependency>
+  	
+  	<!-- Dependencia de los test que no se emplea -->
+  	<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+
+        <plugin>
+   			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>IndexMedline</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<mainClass>es.udc.fic.ri.mri-searcher.indexMedline.IndexMedline</mainClass>
+								</manifest>
+							</archive>
+							<finalName>IndexMedline</finalName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>SearchEvalMedline</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<mainClass>es.udc.fic.ri.mri-searcher.searchEvalMedline.SearchEvalMedline</mainClass>
+								</manifest>
+							</archive>
+							<finalName>SearchEvalMedline</finalName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>TrainingTestMedline</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<mainClass>es.udc.fic.ri.mri-searcher.trainingTestMedline.TrainingTestMedline</mainClass>
+								</manifest>
+							</archive>
+							<finalName>TrainingTestMedline</finalName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>Compare</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<mainClass>es.udc.fic.ri.mri-searcher.compare.Compare</mainClass>
+								</manifest>
+							</archive>
+							<finalName>Compare</finalName>
+						</configuration>
+					</execution>
+				</executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
